@@ -47,16 +47,16 @@ namespace BulanikMantik.Controllers
         GenelModel m = new GenelModel();
         static List<GrafikModel> grafikModel = new List<GrafikModel>();
 
-
+        //Grafik Cizimi
         Chart chart = new Chart(600, 600, theme: ChartTheme.Yellow);
         public ActionResult ChartOlustur()
         {
-            
             bool a=true, b=true, c=true, d=true, e = true;
             chart.AddTitle("Isı ayarlayıcı 2000");
             chart.AddLegend("x ve y degerleri");
             foreach (GrafikModel rezidans in grafikModel)
             {
+                //Çok Kücük Ve Asırı çok  Arası grafik secildi
                 if (rezidans.rezidansDurumu == "CokDüsük")
                 {
                  
@@ -149,13 +149,11 @@ namespace BulanikMantik.Controllers
 
         public ActionResult Index()
         {
-           
+
             ViewBag.sicaklikSonuc = sicaklikSonuc;
             ViewBag.sicaklikSonucDurumu = sicaklikSonucDurumu;
             ViewBag.seviyeSonuc = seviyeSonuc;
             ViewBag.seviyeSonucDurumu = seviyeSonucDurumu;
-            //sicaklikSonuc[0]=Sicaklik;
-            //seviyeSonuc[0] = seviye;
 
             return View();
         }
@@ -183,7 +181,8 @@ namespace BulanikMantik.Controllers
             bulanikCikarim();
             ViewBag.sonuc = islemSonuc;
             islemSonuc = 0;
-            return View(rezidansAnlamDegerleri);
+            //rezidansAnlamDegerleri
+            return View(grafikModel);
         }
 
         //Bulaniklastirma
@@ -339,30 +338,31 @@ namespace BulanikMantik.Controllers
         //Bulanik Cikarim
         public void bulanikCikarim()
         {
-            //1,4,8 tane olabilir
-            //1 tane sicaklik vardir
+           //2 Tane Siçaklik varmı
             if (sicaklikSonuc[1]!=-1)
             {
+                //2 Tane Seviye varmı
                 if (seviyeSonuc[1] != -1)
                 {
+                    //2 Sicaklik ve seviye bulundu
                     IkıSicaklikIkiSeviyeHesapla();
-                    
                 }
                 else
                 {
+                    //2 Sicaklik ve 1 seviye bulundu
                     IkisicaklikDortluhesapla();
-                   
                 }
             }           
             else if(seviyeSonuc[1] != -1)
             {
+                //1 Sicaklik ve 2 seviye bulundu
                 IkiseviyeDortluhesapla();
                 
             }
             else
             {
+                //1 Sicaklik ve 1 seviye bulundu
                 tekliHesapla();
-                
             }
 
             rezidansDegerleri[0] = rezidans;
@@ -370,9 +370,10 @@ namespace BulanikMantik.Controllers
             rezidansDegerleri[2] = rezidans3;
             rezidansDegerleri[3] = rezidans4;
         }
-        //tek sicaklik ve seviye
+        // Bulanık Çıkarım tek sicaklik ve seviye 
         public void tekliHesapla()
         {
+            //Seviye ve sıcaklıgı karsılastırır rezidansı bulur
             if (seviyeSonuc[0]>=sicaklikSonuc[0])
             {
                 rezidans = sicaklikSonuc[0];
@@ -382,9 +383,8 @@ namespace BulanikMantik.Controllers
             {
                 rezidans = seviyeSonuc[0];
             }
-            
+            // Sonuc bulan fonksiyon
             durulastirmaBul(rezidans, rezidansIcinTablo[seviyeSonucDurumu[0],sicaklikSonucDurumu[0]], 0);
-            //islemSonuc=(durulastirmaFonksiyoGelen[0] + durulastirmaFonksiyoGelen[1])/(2*rezidans);
             if (toplam1 == 0 && toplam2 == 0)
             {
                 islemSonuc = 0;
@@ -449,7 +449,7 @@ namespace BulanikMantik.Controllers
                 rezidans2 = seviyeSonuc[0];
             }
             durulastirmaBul(rezidans2, rezidansIcinTablo[seviyeSonucDurumu[1], sicaklikSonucDurumu[0]], 2);
-            //islemSonuc = (durulastirmaFonksiyoGelen[0] + durulastirmaFonksiyoGelen[1] + durulastirmaFonksiyoGelen[2] + durulastirmaFonksiyoGelen[3]) / (2 * rezidans + 2 * rezidans2);
+            
             if (toplam1 == 0 && toplam2 == 0)
             {
                 islemSonuc = 0;
@@ -502,7 +502,7 @@ namespace BulanikMantik.Controllers
                 rezidans4 = seviyeSonuc[1];
             }
             durulastirmaBul(rezidans4, rezidansIcinTablo[seviyeSonucDurumu[1], sicaklikSonucDurumu[1]], 6);
-            //islemSonuc = (durulastirmaFonksiyoGelen[0] + durulastirmaFonksiyoGelen[1] + durulastirmaFonksiyoGelen[2] + durulastirmaFonksiyoGelen[3]+ durulastirmaFonksiyoGelen[4] + durulastirmaFonksiyoGelen[5] + durulastirmaFonksiyoGelen[6] + durulastirmaFonksiyoGelen[7]) / (2 * rezidans + 2 * rezidans2+2*rezidans3+2*rezidans4);
+
             if (toplam1 == 0 && toplam2 == 0)
             {
                 islemSonuc = 0;
@@ -515,13 +515,12 @@ namespace BulanikMantik.Controllers
         //durulastirma için
         public void durulastirmaBul(double rezidans,int durum,int sayac)
         {
-            
-
             double buyuk, orta, kucuk,sonuc;
             if (durum == 0)
             {
                 rezidansAnlamDegerleri.Add("Hareket Yok");
             }
+            //Tabloyu bir yerden Kesecek sonuc bulup tablo için degerleri üretir
             if (durum==1)
             {
                 buyuk = 1; orta = 0.5; kucuk = 0;
@@ -538,9 +537,7 @@ namespace BulanikMantik.Controllers
                 gm.y1 = rezidans;
                 gm.rezidansDurumu ="CokDüsük";
                 grafikModel.Add(gm);
-                //x1 = i;
-                //y1 = rezidans;
-                //gm.rezidansDurumu = "CokDüsük";
+
 
             }
             if (durum==2)
@@ -558,9 +555,7 @@ namespace BulanikMantik.Controllers
                     durulastirmaFonksiyoGelen[sayac] = sonuc;
                     toplam1 = toplam1 + sonuc;
                     toplam2 = toplam2 + 2 * rezidans;
-                //x2 = i1;
-                //x3 = i2;
-                //y2 = rezidans;
+
                 rezidansAnlamDegerleri.Add("Düsük");
 
                 GrafikModel gm = new GrafikModel();
@@ -588,9 +583,6 @@ namespace BulanikMantik.Controllers
                 toplam2 = toplam2 + 2 * rezidans;
                 rezidansAnlamDegerleri.Add("Orta");
 
-                //x4 = i1;
-                //x5 = i2;
-                //y3 = rezidans;
 
 
                 GrafikModel gm = new GrafikModel();
@@ -618,9 +610,7 @@ namespace BulanikMantik.Controllers
                 toplam2 = toplam2 + 2 * rezidans;
                 rezidansAnlamDegerleri.Add("Çok");
 
-                //x6 = i1;
-                //x7 = i2;
-                //y4 = rezidans;
+
 
                 GrafikModel gm = new GrafikModel();
                 gm.x1 = i1;
@@ -638,8 +628,7 @@ namespace BulanikMantik.Controllers
                 durulastirmaFonksiyoGelen[sayac] = sonuc;
                 toplam1 = toplam1 + sonuc;
                 toplam2 = toplam2 + rezidans;
-                //x8 = i;
-                //y5 = rezidans;
+               
                 rezidansAnlamDegerleri.Add("AşırıÇok");
 
 

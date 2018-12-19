@@ -1,4 +1,4 @@
-﻿@model List<String>
+﻿@model List<BulanikMantik.Models.GrafikModel>
 @{
     Double[] sicaklikSonuc = (Double[])ViewBag.sicaklikSonuc;
     int[] sicaklikSonucDurumu = (int[])ViewBag.sicaklikSonucDurumu;
@@ -203,28 +203,28 @@
                         {
                             if (seviyeSonuc[1] != -1)
                             {
-                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]): Çıkıs  @Model[0] (@rezidansDegerleri[0]) </p>
-                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[1] (@sicaklikSonuc[1]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]): Çıkıs @Model[1] (@rezidansDegerleri[1])</p>
-                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[1] (@seviyeSonuc[1]): Çıkıs @Model[2] (@rezidansDegerleri[2])</p>
-                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[1] (@sicaklikSonuc[1]) ve Seviye @seviyeSonucDurumuEkran[1] (@seviyeSonuc[1]): Çıkıs @Model[3] (@rezidansDegerleri[3])</p>
+                        <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]) O Halde: Çıkıs  @Model[0].rezidansDurumu (@rezidansDegerleri[0]) </p>
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[1] (@sicaklikSonuc[1]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]) O Halde: Çıkıs @Model[1].rezidansDurumu (@rezidansDegerleri[1])</p>
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[1] (@seviyeSonuc[1]) O Halde: Çıkıs @Model[2].rezidansDurumu (@rezidansDegerleri[2])</p>
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[1] (@sicaklikSonuc[1]) ve Seviye @seviyeSonucDurumuEkran[1] (@seviyeSonuc[1]) O Halde: Çıkıs @Model[3].rezidansDurumu (@rezidansDegerleri[3])</p>
                             }
 
                             else
                             {
-                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]): Çıkıs @Model[0] (@rezidansDegerleri[0])</p>
-                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[1] (@sicaklikSonuc[1]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]): Çıkıs @Model[1] (@rezidansDegerleri[1])</p>
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]) O Halde: Çıkıs @Model[0].rezidansDurumu (@rezidansDegerleri[0])</p>
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[1] (@sicaklikSonuc[1]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]) O Halde: Çıkıs @Model[1].rezidansDurumu (@rezidansDegerleri[1])</p>
                             }
 
 
                         }
                         else if (seviyeSonuc[1] != -1)
                         {
-                            <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]): Çıkıs @Model[0] (@rezidansDegerleri[0])</p>
-                            <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[1] (@seviyeSonuc[1]): Çıkıs @Model[1] (@rezidansDegerleri[1])</p>
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]) O Halde: Çıkıs @Model[0].rezidansDurumu (@rezidansDegerleri[0])</p>
+                            <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[1] (@seviyeSonuc[1]) O Halde: Çıkıs @Model[1].rezidansDurumu (@rezidansDegerleri[1])</p>
                         }
                         else
                         {
-                            <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]): Çıkıs @Model[0] (@rezidansDegerleri[0])</p>
+                            <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]) O Halde: Çıkıs @Model[0].rezidansDurumu (@rezidansDegerleri[0])</p>
                         }
                     </div>
                 </div>
