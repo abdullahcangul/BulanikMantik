@@ -1,0 +1,259 @@
+﻿@model List<String>
+@{
+    Double[] sicaklikSonuc = (Double[])ViewBag.sicaklikSonuc;
+    int[] sicaklikSonucDurumu = (int[])ViewBag.sicaklikSonucDurumu;
+    Double[] seviyeSonuc = (Double[])ViewBag.seviyeSonuc;
+    int[] seviyeSonucDurumu = (int[])ViewBag.seviyeSonucDurumu;
+    Double[] rezidansDegerleri = (Double[])ViewBag.rezidansDegerleri;
+    String[] sicaklikSonucDurumuEkran = new string[2];
+    String[] seviyeSonucDurumuEkran = new string[2];
+    if (sicaklikSonucDurumu[0] != -1)
+    {
+        if (sicaklikSonucDurumu[0] == 0)
+        {
+            sicaklikSonucDurumuEkran[0] = "Çok Düsük";
+        }
+        if (sicaklikSonucDurumu[0] == 1)
+        {
+            sicaklikSonucDurumuEkran[0] = "Düsük";
+        }
+        if (sicaklikSonucDurumu[0] == 2)
+        {
+            sicaklikSonucDurumuEkran[0] = " orta";
+        }
+        if (sicaklikSonucDurumu[0] == 3)
+        {
+            sicaklikSonucDurumuEkran[0] = "Yüksek";
+        }
+        if (sicaklikSonucDurumu[0] == 4)
+        {
+            sicaklikSonucDurumuEkran[0] = "Çok Yüksek";
+        }
+
+
+
+    }
+    if (sicaklikSonucDurumu[1] != -1)
+    {
+        if (sicaklikSonucDurumu[1] == 0)
+        {
+            sicaklikSonucDurumuEkran[1] = "Çok Düsük";
+        }
+        if (sicaklikSonucDurumu[1] == 1)
+        {
+            sicaklikSonucDurumuEkran[1] = "Düsük";
+        }
+        if (sicaklikSonucDurumu[1] == 2)
+        {
+            sicaklikSonucDurumuEkran[1] = "orta";
+        }
+        if (sicaklikSonucDurumu[1] == 3)
+        {
+            sicaklikSonucDurumuEkran[1] = "Yüksek";
+        }
+        if (sicaklikSonucDurumu[1] == 4)
+        {
+            sicaklikSonucDurumuEkran[1] = "Çok Yüksek";
+        }
+    }
+    if (seviyeSonucDurumu[0] != -1)
+    {
+        if (seviyeSonucDurumu[0] == 0)
+        {
+            seviyeSonucDurumuEkran[0] = "Çok Düsük";
+        }
+        if (seviyeSonucDurumu[0] == 1)
+        {
+            seviyeSonucDurumuEkran[0] = "Düsük";
+        }
+        if (seviyeSonucDurumu[0] == 2)
+        {
+            seviyeSonucDurumuEkran[0] = " orta";
+        }
+        if (seviyeSonucDurumu[0] == 3)
+        {
+            seviyeSonucDurumuEkran[0] = "Yüksek";
+        }
+        if (seviyeSonucDurumu[0] == 4)
+        {
+            seviyeSonucDurumuEkran[0] = "Çok Yüksek";
+        }
+       
+    }
+    if (seviyeSonucDurumu[1] != -1)
+    {
+        if (seviyeSonucDurumu[1] == 0)
+        {
+            seviyeSonucDurumuEkran[1] = "Çok Düsük";
+        }
+        if (seviyeSonucDurumu[1] == 1)
+        {
+            seviyeSonucDurumuEkran[1] = " Düsük";
+        }
+        if (seviyeSonucDurumu[1] == 2)
+        {
+            seviyeSonucDurumuEkran[1] = " orta";
+        }
+        if (seviyeSonucDurumu[1] == 3)
+        {
+            seviyeSonucDurumuEkran[1] = "Yüksek";
+        }
+        if (seviyeSonucDurumu[1] == 4)
+        {
+            seviyeSonucDurumuEkran[1] = "Çok Yüksek";
+        }
+    }
+}
+
+
+
+
+
+<div class="jumbotron">
+    <h1 class="display-4"> Isı Seviye 2000</h1>
+    <p class="lead">Bu Program Kullanıcının daha iyi Isı ayar tercihi yapması için geliştirilmiştir.Bulanık mantık yöntemi  kullanılarak  oluşturulmuştur</p>
+    <hr class="my-4">
+    <p>CANMELEZLER bilişim.Aş hiç bir sekilde secilen karardan dolayı sorumluluk Kabul etmemektedir.</p>
+</div>
+<div class="container">
+   
+
+        <div class="row ">
+            <div class="col-lg-3">Sıcaklik</div>
+            <div class="col-lg-3">Seviye</div>
+            <div class="col-lg-3">Sonuc</div>
+        </div>
+
+  
+
+    @using (Html.BeginForm())
+    {
+        <div class="row form-inline">
+            <div class="col-lg-3"> @Html.TextBox("Sicaklik", null, new { @class = "form-control", placeholder = "Sicaklik Giriniz" })</div>
+            <div class="col-lg-3">@Html.TextBox("seviye", null, new { @class = "form-control", placeholder = "Seviye Giriniz" })</div>
+            @if (ViewBag.sonuc != null)
+            {
+                <div class="col-lg-3">
+
+                    <div class="text-info" role="alert">
+                        <input class="form-control" value="@ViewBag.sonuc" />
+                    </div>
+
+                </div>
+            }
+            <div class="col-lg-3"> <button class="btn btn-danger" type="submit">Hesapla</button></div>
+        </div>
+    }
+    @if (ViewBag.sonuc != null)
+    {
+
+        <h1 style="color:red">1.Adım seviye ve sicaklik üyelik girisi bulunması</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <img class="card-img-top" src="~/Content/Resimler/Sicaklik.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Sicaklik Girişi Üyelik Degerleri</h5>
+                        @if (sicaklikSonuc[0] != -1)
+                        {
+                            <p class="card-text">@sicaklikSonucDurumuEkran[0] için Sicaklık üyelik derecesi:@sicaklikSonuc[0]</p>
+                        }
+                        @if (sicaklikSonuc[1] != -1)
+                        {
+                            <p class="card-text">@sicaklikSonucDurumuEkran[1] için Sicaklık üyelik derecesi:@sicaklikSonuc[1]</p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <img class="card-img-top" src="~/Content/Resimler/Seviye.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Seviye Girişi Üyelik Degerleri</h5>
+                        @if (seviyeSonuc[0] != -1)
+                        {
+                            <p class="card-text">@seviyeSonucDurumuEkran[0] için Seviye üyelik derecesi:@seviyeSonuc[0]</p>
+                        }
+                        @if (seviyeSonuc[1] != -1)
+                        {
+                            <p class="card-text">@seviyeSonucDurumuEkran[1] için Seviye üyelik derecesi:@seviyeSonuc[1]</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 style="color:red">2.Adım Uygulanan Kurallar</h1>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        @if (sicaklikSonuc[1] != -1)
+                        {
+                            if (seviyeSonuc[1] != -1)
+                            {
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]): Çıkıs  @Model[0] (@rezidansDegerleri[0]) </p>
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[1] (@sicaklikSonuc[1]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]): Çıkıs @Model[1] (@rezidansDegerleri[1])</p>
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[1] (@seviyeSonuc[1]): Çıkıs @Model[2] (@rezidansDegerleri[2])</p>
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[1] (@sicaklikSonuc[1]) ve Seviye @seviyeSonucDurumuEkran[1] (@seviyeSonuc[1]): Çıkıs @Model[3] (@rezidansDegerleri[3])</p>
+                            }
+
+                            else
+                            {
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]): Çıkıs @Model[0] (@rezidansDegerleri[0])</p>
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[1] (@sicaklikSonuc[1]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]): Çıkıs @Model[1] (@rezidansDegerleri[1])</p>
+                            }
+
+
+                        }
+                        else if (seviyeSonuc[1] != -1)
+                        {
+                            <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]): Çıkıs @Model[0] (@rezidansDegerleri[0])</p>
+                            <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[1] (@seviyeSonuc[1]): Çıkıs @Model[1] (@rezidansDegerleri[1])</p>
+                        }
+                        else
+                        {
+                            <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]): Çıkıs @Model[0] (@rezidansDegerleri[0])</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h1 style="color:red">3.Grafigin Çizdirilmesi</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+         
+                    <img class="card-img-top" src="/SuIsıtma/ChartOlustur" alt="Card image cap">
+                
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <h1 style="color:red">4.Durulaştırılmış Çıkış(Sonuc)</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="alert alert-danger" role="alert">
+                            <h3 style="margin-left:40%;" class="text-lg-center">@ViewBag.sonuc</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+
+@section head{
+
+}
+
+
