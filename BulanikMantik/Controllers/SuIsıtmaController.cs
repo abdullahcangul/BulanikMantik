@@ -32,8 +32,6 @@ namespace BulanikMantik.Controllers
 
         //durulastirma 
         //Tablo degerleri
-        static double y1, y2, y3,y4,y5,y6,y7;
-        static double x1, x2, x3, x4, x5, x6, x7, x8;
         double[] durulastirmaFonksiyoGelen =new double[8] { 0,0,0,0,0,0,0,0};
         int sayacdurulastirma = 0;
         //0=hareket yok,1=CA,2=A,3=O,4=A,5=AC
@@ -59,8 +57,6 @@ namespace BulanikMantik.Controllers
             chart.AddLegend("x ve y degerleri");
             foreach (GrafikModel rezidans in grafikModel)
             {
-               
-               
                 if (rezidans.rezidansDurumu == "CokDüsük")
                 {
                  
@@ -71,16 +67,7 @@ namespace BulanikMantik.Controllers
                       yValues: new[] { 1, 1, rezidans.y1, 0 });
                       a = false;
                     }
-
-                    //chart.AddSeries( chartType: "Line",
-                    // xValue: new[] { rezidans.x1, rezidans.x1},
-                    // yValues: new[] { 0, rezidans.y1,});
-
-                    //chart.AddSeries(chartType: "Line",
-                    //xValue: new[] {  rezidans.x1,0 },
-                    //yValues: new[] { rezidans.y1, rezidans.y1 });
-
-                    chart.AddSeries(chartType: "Line",
+                    chart.AddSeries( chartType: "Line",
                      xValue: new[] {0, rezidans.x1 , rezidans.x1 },
                      yValues: new[] { rezidans.y1, rezidans.y1, 0 });
 
@@ -97,29 +84,11 @@ namespace BulanikMantik.Controllers
                          yValues: new[] { 0, rezidans.y1, 1,rezidans.y1, 0 });
                         b = false;
                     }
-
-
-
-                    // chart.AddSeries(chartType: "Line",
-                    //xValue: new[] { rezidans.x1, rezidans.x1, },
-                    //yValues: new[] { 0, rezidans.y1, });
-
-                    // chart.AddSeries(chartType: "Line",
-                    // xValue: new[] { rezidans.x1, 0 },
-                    // yValues: new[] { rezidans.y1, rezidans.y1 });
-
-                    // chart.AddSeries(chartType: "Line",
-                    //xValue: new[] { rezidans.x2, rezidans.x2, },
-                    //yValues: new[] { 0, rezidans.y1, });
-
-                    // chart.AddSeries(chartType: "Line",
-                    // xValue: new[] { rezidans.x2, 0 },
-                    // yValues: new[] { rezidans.y1, rezidans.y1 });
                     chart.AddSeries(chartType: "Line",
                      xValue: new[] { 0, rezidans.x1, rezidans.x1 },
-                     yValues: new[] { rezidans.y1, rezidans.y1, 0 });
+                     yValues: new[] { rezidans.y1, 0 });
 
-                    chart.AddSeries(chartType: "Line",
+                    chart.AddSeries( chartType: "Line",
                     xValue: new[] { 0, rezidans.x2, rezidans.x2 },
                     yValues: new[] { rezidans.y1, rezidans.y1, 0 });
                 }
@@ -132,26 +101,12 @@ namespace BulanikMantik.Controllers
                         yValues: new[] { 0, rezidans.y1, 1, rezidans.y1, 0 });
                         c = false;
                     }
-                    // chart.AddSeries(chartType: "Line",
-                    //xValue: new[] { rezidans.x1, rezidans.x1, },
-                    //yValues: new[] { 0, rezidans.y1, });
 
-                    // chart.AddSeries(chartType: "Line",
-                    // xValue: new[] { rezidans.x1, 0 },
-                    // yValues: new[] { rezidans.y1, rezidans.y1 });
-
-                    // chart.AddSeries(chartType: "Line",
-                    //xValue: new[] { rezidans.x2, rezidans.x2, },
-                    //yValues: new[] { 0, rezidans.y1, });
-
-                    // chart.AddSeries(chartType: "Line",
-                    // xValue: new[] { rezidans.x2, 0 },
-                    // yValues: new[] { rezidans.y1, rezidans.y1 });
-                    chart.AddSeries(chartType: "Line",
+                    chart.AddSeries( chartType: "Line",
                     xValue: new[] { 0, rezidans.x1, rezidans.x1 },
                     yValues: new[] { rezidans.y1, rezidans.y1, 0 });
 
-                    chart.AddSeries(chartType: "Line",
+                    chart.AddSeries( chartType: "Line",
                     xValue: new[] { 0, rezidans.x2, rezidans.x2 },
                     yValues: new[] { rezidans.y1, rezidans.y1, 0 });
                 }
@@ -166,26 +121,11 @@ namespace BulanikMantik.Controllers
                     }
 
 
-                    // chart.AddSeries(chartType: "Line",
-                    //xValue: new[] { rezidans.x1, rezidans.x1, },
-                    //yValues: new[] { 0, rezidans.y1, });
-
-                    // chart.AddSeries(chartType: "Line",
-                    // xValue: new[] { rezidans.x1, 0 },
-                    // yValues: new[] { rezidans.y1, rezidans.y1 });
-
-                    // chart.AddSeries(chartType: "Line",
-                    //xValue: new[] { rezidans.x2, rezidans.x2, },
-                    //yValues: new[] { 0, rezidans.y1, });
-
-                    // chart.AddSeries(chartType: "Line",
-                    // xValue: new[] { rezidans.x2, 0 },
-                    // yValues: new[] { rezidans.y1, rezidans.y1 });
-                    chart.AddSeries(chartType: "Line",
+                    chart.AddSeries( chartType: "Line",
                     xValue: new[] { 0, rezidans.x1, rezidans.x1 },
                     yValues: new[] { rezidans.y1, rezidans.y1, 0 });
 
-                    chart.AddSeries(chartType: "Line",
+                    chart.AddSeries( chartType: "Line",
                     xValue: new[] { 0, rezidans.x2, rezidans.x2 },
                     yValues: new[] { rezidans.y1, rezidans.y1, 0 });
                 }
@@ -198,14 +138,8 @@ namespace BulanikMantik.Controllers
                          yValues: new[] { 0, rezidans.y1,1, 1 });
                         e = false;
                     }
-                    //chart.AddSeries(chartType: "Line",
-                    // xValue: new[] { rezidans.x1, rezidans.x1 },
-                    // yValues: new[] { 0, rezidans.y1, });
 
-                    //chart.AddSeries(chartType: "Line",
-                    //xValue: new[] { rezidans.x1, 0 },
-                    //yValues: new[] { rezidans.y1, rezidans.y1 });
-                    chart.AddSeries(chartType: "Line",
+                    chart.AddSeries( chartType: "Line",
                     xValue: new[] { 0, rezidans.x1, rezidans.x1 },
                     yValues: new[] { rezidans.y1, rezidans.y1, 0 });
                 }
@@ -226,8 +160,13 @@ namespace BulanikMantik.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(double Sicaklik,double seviye)
+        public ActionResult Index(double Sicaklik,double seviye,string tabloIlk)
         {
+            if (tabloIlk != null)
+            {
+                grafikModel.Count();
+                grafikModel.RemoveRange(0, grafikModel.Count());
+            }
             
             //1 adım
             ViewBag.sicaklikSonuc = sicaklikSonuc;
