@@ -116,20 +116,20 @@
     <p>CANMELEZLER bilişim.Aş hiç bir sekilde secilen karardan dolayı sorumluluk Kabul etmemektedir.</p>
 </div>
 <div class="container">
-   
 
-        <div class="row ">
-            <div class="col-lg-3">Sıcaklik</div>
-            <div class="col-lg-3">Seviye</div>
-            <div class="col-lg-3">Sonuc</div>
-        </div>
 
-  
+    <div class="row ">
+        <div class="col-lg-3">Sıcaklik</div>
+        <div class="col-lg-3">Seviye</div>
+        <div class="col-lg-3">Sonuc</div>
+    </div>
+
+
 
     @using (Html.BeginForm())
     {
         <div class="row form-inline">
-            <div class="col-lg-3"> @Html.TextBox("Sicaklik", null, new { @class = "form-control", placeholder = "Sicaklik Giriniz"   })</div>
+            <div class="col-lg-3"> @Html.TextBox("Sicaklik", null, new { @class = "form-control", placeholder = "Sicaklik Giriniz" })</div>
             <div class="col-lg-3">@Html.TextBox("seviye", null, new { @class = "form-control", placeholder = "Seviye Giriniz" })</div>
             @if (ViewBag.sonuc != null)
             {
@@ -141,18 +141,18 @@
 
                 </div>
             }
-                <div class="col-lg-3">
-                    @if (ViewBag.sonuc != null)
-                    {
-                        <button value="a" class="btn btn-danger" type="submit" name="tabloIlk">Hesapla</button>
-                    }
-                    else
-                    {
-                        <button  class="btn btn-danger" type="submit">Hesapla</button>
-                    }
-                </div>
+            <div class="col-lg-3">
+                @if (ViewBag.sonuc != null)
+                {
+                    <button value="a" class="btn btn-danger" type="submit" name="tabloIlk">Hesapla</button>
+                }
+                else
+                {
+                    <button class="btn btn-danger" type="submit">Hesapla</button>
+                }
+            </div>
         </div>
-        
+
     }
     @if (ViewBag.sonuc != null)
     {
@@ -161,7 +161,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <img class="card-img-top" src="~/Content/Resimler/Sicaklik.png" alt="Card image cap">
+                    <img class="card-img-top" src="/SuIsıtma/SicaklikChartOlustur" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Sicaklik Girişi Üyelik Degerleri</h5>
                         @if (sicaklikSonuc[0] != -1)
@@ -177,7 +177,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <img class="card-img-top" src="~/Content/Resimler/Seviye.png" alt="Card image cap">
+                    <img class="card-img-top" src="/SuIsıtma/SeviyeChartOlustur" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Seviye Girişi Üyelik Degerleri</h5>
                         @if (seviyeSonuc[0] != -1)
@@ -203,7 +203,7 @@
                         {
                             if (seviyeSonuc[1] != -1)
                             {
-                        <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]) O Halde: Çıkıs  @Model[0].rezidansDurumu (@rezidansDegerleri[0]) </p>
+                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]) O Halde: Çıkıs  @Model[0].rezidansDurumu (@rezidansDegerleri[0]) </p>
                                 <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[1] (@sicaklikSonuc[1]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]) O Halde: Çıkıs @Model[1].rezidansDurumu (@rezidansDegerleri[1])</p>
                                 <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[1] (@seviyeSonuc[1]) O Halde: Çıkıs @Model[2].rezidansDurumu (@rezidansDegerleri[2])</p>
                                 <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[1] (@sicaklikSonuc[1]) ve Seviye @seviyeSonucDurumuEkran[1] (@seviyeSonuc[1]) O Halde: Çıkıs @Model[3].rezidansDurumu (@rezidansDegerleri[3])</p>
@@ -219,7 +219,7 @@
                         }
                         else if (seviyeSonuc[1] != -1)
                         {
-                                <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]) O Halde: Çıkıs @Model[0].rezidansDurumu (@rezidansDegerleri[0])</p>
+                            <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[0] (@seviyeSonuc[0]) O Halde: Çıkıs @Model[0].rezidansDurumu (@rezidansDegerleri[0])</p>
                             <p class="card-text"> EGER Sicaklıgı @sicaklikSonucDurumuEkran[0] (@sicaklikSonuc[0]) ve Seviye @seviyeSonucDurumuEkran[1] (@seviyeSonuc[1]) O Halde: Çıkıs @Model[1].rezidansDurumu (@rezidansDegerleri[1])</p>
                         }
                         else
@@ -231,21 +231,36 @@
             </div>
         </div>
 
-        <h1 style="color:red">3.Grafigin Çizdirilmesi</h1>
+        <h1 style="color:red">3.Grafigin Çizdirilmesi Mandami Yöntemi </h1>
         <div class="row">
+           
             <div class="col-md-6">
                 <div class="card">
-         
+                    <h3 class="text-center" style="color:blue">3.1 Mandami Yöntemi </h3>
                     <img class="card-img-top" src="/SuIsıtma/ChartOlustur" alt="Card image cap">
-                
+
                     <div class="card-body">
 
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                
+                <div class="card">
+                    <h3 class="card-title text-center" style="color:blue">3.2 Agırlıklı ortalama yüntemi </h3>
+                    <img class="card-img-top" src="/SuIsıtma/sonucChart" alt="Card image cap">
 
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
         </div>
 
+        
+
+
+       
         <h1 style="color:red">4.Durulaştırılmış Çıkış(Sonuc)</h1>
         <div class="row">
             <div class="col-md-6">

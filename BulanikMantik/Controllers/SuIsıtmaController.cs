@@ -1,6 +1,7 @@
 ﻿using BulanikMantik.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -46,11 +47,17 @@ namespace BulanikMantik.Controllers
         //Grafik cizme
         GenelModel m = new GenelModel();
         static List<GrafikModel> grafikModel = new List<GrafikModel>();
+        static List<SicaklıkSeviyeModel> sicaklikSModel = new List<SicaklıkSeviyeModel>();
+
 
         //Grafik Cizimi
-        Chart chart = new Chart(600, 600, theme: ChartTheme.Yellow);
+        Chart chart = new System.Web.Helpers.Chart(600, 600, theme: ChartTheme.Vanilla);
+        
         public ActionResult ChartOlustur()
         {
+            chart.SetXAxis(min:0);
+            chart.SetYAxis(min: 0);
+            
             bool a=true, b=true, c=true, d=true, e = true;
             chart.AddTitle("Isı ayarlayıcı 2000");
             chart.AddLegend("x ve y degerleri");
@@ -62,93 +69,89 @@ namespace BulanikMantik.Controllers
                  
                     if (a == true)
                     {
-                      chart.AddSeries(name: "CokDüsük", chartType: "Line",
-                      xValue: new[] { 0, 0.5, rezidans.x1, 1 },
-                      yValues: new[] { 1, 1, rezidans.y1, 0 });
+
+                        chart.AddSeries( chartType: "Line",
+                        xValue: new[] { 0, 0.5, rezidans.x1, 1 },
+                        yValues: new[] { 1, 1, rezidans.y1, 0 });
+
+                    
                       a = false;
                     }
+                    chart.AddSeries(name: "CokDüsük-" + rezidans.y1, chartType: "Area",
+                  xValue: new[] { 0, rezidans.x1, 1 },
+                  yValues: new[] { rezidans.y1, rezidans.y1, 0 });
+
                     //chart.AddSeries(chartType: "Line",
-                    // xValue: new[] {0, rezidans.x1 , rezidans.x1 },
-                    // yValues: new[] { rezidans.y1, rezidans.y1, 0 });
+                    // xValue: new[] { rezidans.x1, rezidans.x1 },
+                    // yValues: new[] { 0, rezidans.y1, });
 
-                    chart.AddSeries(chartType: "Line",
-                     xValue: new[] { rezidans.x1, rezidans.x1 },
-                     yValues: new[] { 0, rezidans.y1, });
-
-                    chart.AddSeries(chartType: "Line",
-                    xValue: new[] { rezidans.x1, 0 },
-                    yValues: new[] { rezidans.y1, rezidans.y1 });
-
-
-
+                    //chart.AddSeries(chartType: "Line",
+                    //xValue: new[] { rezidans.x1, 0 },
+                    //yValues: new[] { rezidans.y1, rezidans.y1 });
 
                 }
                 if (rezidans.rezidansDurumu == "Düsük")
                 {
                     if(b == true)
                     {
-                        chart.AddSeries(name: "Düsük", chartType: "Line",
+                        chart.AddSeries(name:"düsük", chartType: "Line",
                         xValue: new[] { 0.5, rezidans.x2, 1.25, rezidans.x1, 2 },
-                         yValues: new[] { 0, rezidans.y1, 1,rezidans.y1, 0 });
+                         yValues: new[] { 0, rezidans.y1, 1, rezidans.y1, 0 });
+
+                      
                         b = false;
                     }
-                    //chart.AddSeries(chartType: "Line",
-                    // xValue: new[] { 0, rezidans.x1, rezidans.x1 },
-                    // yValues: new[] { rezidans.y1, 0 });
+                    chart.AddSeries(name: "Düsük-" + rezidans.y1, chartType: "Area",
+                      xValue: new[] { 0.5, rezidans.x2, /*1.25,*/ rezidans.x1, 2 },
+                     yValues: new[] { 0, rezidans.y1,/* 1,*/rezidans.y1, 0 });
+                    // chart.AddSeries(chartType: "Line",
+                    //xValue: new[] { rezidans.x1, rezidans.x1, },
+                    //yValues: new[] { 0, rezidans.y1, });
 
-                    //chart.AddSeries( chartType: "Line",
-                    //xValue: new[] { 0, rezidans.x2, rezidans.x2 },
-                    //yValues: new[] { rezidans.y1, rezidans.y1, 0 });
+                    // chart.AddSeries(chartType: "Line",
+                    // xValue: new[] { rezidans.x1, 0 },
+                    // yValues: new[] { rezidans.y1, rezidans.y1 });
 
-                    chart.AddSeries(chartType: "Line",
-                   xValue: new[] { rezidans.x1, rezidans.x1, },
-                   yValues: new[] { 0, rezidans.y1, });
+                    // chart.AddSeries(chartType: "Line",
+                    //xValue: new[] { rezidans.x2, rezidans.x2, },
+                    //yValues: new[] { 0, rezidans.y1, });
 
-                    chart.AddSeries(chartType: "Line",
-                    xValue: new[] { rezidans.x1, 0 },
-                    yValues: new[] { rezidans.y1, rezidans.y1 });
-
-                    chart.AddSeries(chartType: "Line",
-                   xValue: new[] { rezidans.x2, rezidans.x2, },
-                   yValues: new[] { 0, rezidans.y1, });
-
-                    chart.AddSeries(chartType: "Line",
-                    xValue: new[] { rezidans.x2, 0 },
-                    yValues: new[] { rezidans.y1, rezidans.y1 });
+                    // chart.AddSeries(chartType: "Line",
+                    // xValue: new[] { rezidans.x2, 0 },
+                    // yValues: new[] { rezidans.y1, rezidans.y1 });
                 }
                 if (rezidans.rezidansDurumu == "Orta")
                 {
                     if (c == true)
                     {
                         chart.AddSeries(name: "Orta", chartType: "Line",
-                        xValue: new[] { 1.5, rezidans.x2, 2.5, rezidans.x1, 3.5 },
-                        yValues: new[] { 0, rezidans.y1, 1, rezidans.y1, 0 });
+                       xValue: new[] { 1.5, rezidans.x2, 2.5, rezidans.x1, 3.5 },
+                       yValues: new[] { 0, rezidans.y1, 1, rezidans.y1, 0 });
+                       
+
+                     
                         c = false;
                     }
+                    chart.AddSeries(name: "Orta-" + rezidans.y1, chartType: "Area",
+                     xValue: new[] { 1.5, rezidans.x2, /*2.5,*/ rezidans.x1, 3.5 },
+                     yValues: new[] { 0, rezidans.y1, /*1,*/ rezidans.y1, 0 });
 
-                    //chart.AddSeries(chartType: "Line",
-                    //xValue: new[] { 0, rezidans.x1, rezidans.x1 },
-                    //yValues: new[] { rezidans.y1, rezidans.y1, 0 });
+                    // chart.AddSeries(chartType: "Line",
+                    // xValue: new[] { rezidans.x1, rezidans.x1 },
+                    // yValues: new[] { 0, rezidans.y1, });
 
-                    //chart.AddSeries(chartType: "Line",
-                    //xValue: new[] { 0, rezidans.x2, rezidans.x2 },
-                    //yValues: new[] { rezidans.y1, rezidans.y1, 0 });
+                    // chart.AddSeries(chartType: "Line",
+                    // xValue: new[] { rezidans.x1, 0 },
+                    // yValues: new[] { rezidans.y1, rezidans.y1 });
 
-                    chart.AddSeries(chartType: "Line",
-   xValue: new[] { rezidans.x1, rezidans.x1, },
-   yValues: new[] { 0, rezidans.y1, });
+                    // chart.AddSeries(chartType: "Line",
+                    //xValue: new[] { rezidans.x2, rezidans.x2, },
+                    //yValues: new[] { 0, rezidans.y1, });
 
-                    chart.AddSeries(chartType: "Line",
-                    xValue: new[] { rezidans.x1, 0 },
-                    yValues: new[] { rezidans.y1, rezidans.y1 });
+                    // chart.AddSeries(chartType: "Line",
+                    // xValue: new[] { rezidans.x2, 0 },
+                    // yValues: new[] { rezidans.y1, rezidans.y1 });
 
-                    chart.AddSeries(chartType: "Line",
-                   xValue: new[] { rezidans.x2, rezidans.x2, },
-                   yValues: new[] { 0, rezidans.y1, });
-
-                    chart.AddSeries(chartType: "Line",
-                    xValue: new[] { rezidans.x2, 0 },
-                    yValues: new[] { rezidans.y1, rezidans.y1 });
 
 
 
@@ -160,33 +163,30 @@ namespace BulanikMantik.Controllers
                         chart.AddSeries(name: "Çok", chartType: "Line",
                          xValue: new[] { 3, rezidans.x2, 3.75, rezidans.x1, 4.5 },
                          yValues: new[] { 0, rezidans.y1, 1, rezidans.y1, 0 });
+
+                   
+                       
                         d = false;
                     }
 
+                    chart.AddSeries(name: "Çok-" + rezidans.y1, chartType: "Area",
+                    xValue: new[] { 3, rezidans.x2, /*3.75,*/ rezidans.x1, 4.5 },
+                    yValues: new[] { 0, rezidans.y1, /*1,*/ rezidans.y1, 0 });
+                    //                 chart.AddSeries(chartType: "Line",
+                    //xValue: new[] { rezidans.x1, rezidans.x1, },
+                    //yValues: new[] { 0, rezidans.y1, });
 
-                    //chart.AddSeries( chartType: "Line",
-                    //xValue: new[] { 0, rezidans.x1, rezidans.x1 },
-                    //yValues: new[] { rezidans.y1, rezidans.y1, 0 });
+                    //                 chart.AddSeries(chartType: "Line",
+                    //                 xValue: new[] { rezidans.x1, 0 },
+                    //                 yValues: new[] { rezidans.y1, rezidans.y1 });
 
-                    //chart.AddSeries( chartType: "Line",
-                    //xValue: new[] { 0, rezidans.x2, rezidans.x2 },
-                    //yValues: new[] { rezidans.y1, rezidans.y1, 0 });
+                    //                 chart.AddSeries(chartType: "Line",
+                    //                xValue: new[] { rezidans.x2, rezidans.x2, },
+                    //                yValues: new[] { 0, rezidans.y1, });
 
-                    chart.AddSeries(chartType: "Line",
-   xValue: new[] { rezidans.x1, rezidans.x1, },
-   yValues: new[] { 0, rezidans.y1, });
-
-                    chart.AddSeries(chartType: "Line",
-                    xValue: new[] { rezidans.x1, 0 },
-                    yValues: new[] { rezidans.y1, rezidans.y1 });
-
-                    chart.AddSeries(chartType: "Line",
-                   xValue: new[] { rezidans.x2, rezidans.x2, },
-                   yValues: new[] { 0, rezidans.y1, });
-
-                    chart.AddSeries(chartType: "Line",
-                    xValue: new[] { rezidans.x2, 0 },
-                    yValues: new[] { rezidans.y1, rezidans.y1 });
+                    //                 chart.AddSeries(chartType: "Line",
+                    //                 xValue: new[] { rezidans.x2, 0 },
+                    //                 yValues: new[] { rezidans.y1, rezidans.y1 });
                 }
                 if (rezidans.rezidansDurumu == "AşırıÇok")
                 {
@@ -195,25 +195,448 @@ namespace BulanikMantik.Controllers
                         chart.AddSeries(name: "AşırıÇok", chartType: "Line",
                          xValue: new[] { 4,rezidans.x1, 4.5, 5 },
                          yValues: new[] { 0, rezidans.y1,1, 1 });
+
+                   
                         e = false;
                     }
+                    chart.AddSeries(name: "AşırıÇok-" + rezidans.y1, chartType: "Area",
+                    xValue: new[] { 4, rezidans.x1, 5 },
+                    yValues: new[] { 0, rezidans.y1, rezidans.y1 });
+                    //chart.AddSeries( chartType: "Line",
+                    //xValue: new[] { 0, rezidans.x1, rezidans.x1 },
+                    //yValues: new[] { rezidans.y1, rezidans.y1, 0 });
+
+                    //    chart.AddSeries(chartType: "Line",
+                    //     xValue: new[] { rezidans.x1, rezidans.x1 },
+                    //     yValues: new[] { 0, rezidans.y1, });
+
+                    //    chart.AddSeries(chartType: "Line",
+                    //    xValue: new[] { rezidans.x1, 0 },
+                    //    yValues: new[] { rezidans.y1, rezidans.y1 });
+                }
+            }
+            return View(chart);
+        }
+        public ActionResult SicaklikChartOlustur()
+        {
+            Chart chart = new Chart(600, 600, theme: ChartTheme.Vanilla);
+            chart.SetXAxis(min: 0,title:"sicaklik");
+            chart.SetYAxis(min: 0);
+            bool a = true, b = true, c = true, d = true, e = true;
+            chart.AddTitle("Sicaklık");
+            chart.AddLegend("x ve y degerleri");
+            int[] sicaklikSonucDurumu1 = (int[])Session["SicaklıkCins"];
+            double[] sicaklikSonuc1 = (double[])Session["sicaklikCinsDeger"];
+            double sicaklikDerece=(double)Session["sicaklik"];
+            int sayac = 0;
+            foreach (int sicaklik in sicaklikSonucDurumu1)
+            {
+
+                //Çok Kücük Ve Asırı çok  Arası grafik secildi
+                if (sicaklik == 0)
+                {
+
+                    if (a == true)
+                    {
+                        chart.AddSeries(name: "CokDüsük", chartType: "Line",
+                        xValue: new[] { 0, 10, 20 },
+                        yValues: new[] { 1, 1, 0 });
+                        a = false;
+
+              
+                    }
+                    if (sayac == 0)
+                    {
+                        chart.AddSeries(name: "1.Sicaklik"+ sicaklikSonuc1[0], chartType: "Line",
+                       xValue: new[] { 0, sicaklikDerece, sicaklikDerece },
+                       yValues: new[] { sicaklikSonuc1[0], sicaklikSonuc1[0], 0 });
+
+                    }
+                    else
+                    {
+                        chart.AddSeries(name: "2.Sicaklik "+ sicaklikSonuc1[1], chartType: "Line",
+                       xValue: new[] { 0, sicaklikDerece, sicaklikDerece },
+                       yValues: new[] { sicaklikSonuc1[1], sicaklikSonuc1[1], 0 });
+                    }
+
+
+
+                }
+                if (sicaklik == 1)
+                {
+                    if (b == true)
+                    {
+                        chart.AddSeries(name: "Düsük", chartType: "Line",
+                        xValue: new[] { 15,  27.5, 40 },
+                         yValues: new[] { 0,  1, 0 });
+                        b = false;
+
+
+                    }
+                    if (sayac == 0)
+                    {
+                        chart.AddSeries(name: "1.Sicaklik" + sicaklikSonuc1[0], chartType: "Line",
+                        xValue: new[] { 0, sicaklikDerece, sicaklikDerece },
+                        yValues: new[] { sicaklikSonuc1[0], sicaklikSonuc1[0], 0 });
+                    }
+                    else
+                    {
+                        chart.AddSeries(name: "2.Sicaklik" + sicaklikSonuc1[1], chartType: "Line",
+                       xValue: new[] { 0, sicaklikDerece, sicaklikDerece },
+                       yValues: new[] { sicaklikSonuc1[1], sicaklikSonuc1[1], 0 });
+                    }
+
+                }
+                if (sicaklik == 2)
+                {
+                    if (c == true)
+                    {
+                        chart.AddSeries(name: "Orta", chartType: "Line",
+                        xValue: new[] { 35,  47.5,  60 },
+                        yValues: new[] { 0,  1,  0 });
+                        c = false;
+
+                    
+                    }
+                    if (sayac == 0)
+                    {
+                        chart.AddSeries(name: "1.Sicaklik" + sicaklikSonuc1[0], chartType: "Line",
+                xValue: new[] { 0, sicaklikDerece, sicaklikDerece },
+                yValues: new[] { sicaklikSonuc1[0], sicaklikSonuc1[0], 0 });
+                    }
+                    else
+                    {
+                        chart.AddSeries(name: "2.Sicaklik" + sicaklikSonuc1[1], chartType: "Line",
+                       xValue: new[] { 0, sicaklikDerece, sicaklikDerece },
+                       yValues: new[] { sicaklikSonuc1[1], sicaklikSonuc1[1], 0 });
+                    }
+                    
+                }
+                if (sicaklik == 3)
+                {
+                    if (d == true)
+                    {
+                        chart.AddSeries( name: "Çok", chartType: "Line",
+                         xValue: new[] { 55,  67.5,  80 },
+                         yValues: new[] { 0, 1,  0 });
+                        d = false;
+
+                 
+                    }
+                    if (sayac == 0)
+                    {
+                        chart.AddSeries(name: "1.Sicaklik" + sicaklikSonuc1[0], chartType: "Line",
+                                     xValue: new[] { 0, sicaklikDerece, sicaklikDerece },
+                                     yValues: new[] { sicaklikSonuc1[0], sicaklikSonuc1[0], 0 });
+                    }
+                    else
+                    {
+                        chart.AddSeries(name: "2.Sicaklik" + sicaklikSonuc1[1], chartType: "Line",
+                       xValue: new[] { 0, sicaklikDerece, sicaklikDerece },
+                       yValues: new[] { sicaklikSonuc1[1], sicaklikSonuc1[1], 0 });
+                    }
+
+
+                }
+                if (sicaklik == 4)
+                {
+                    if (e == true)
+                    {
+                        chart.AddSeries( name: "AşırıÇok", chartType: "Line",
+                         xValue: new[] { 75,  87, 100 },
+                         yValues: new[] { 0,  1, 1 });
+                        e = false;
+
+                     
+                    }
+                    if (sayac == 0)
+                    {
+                        chart.AddSeries(name: "1.Sicaklik: " + sicaklikSonuc1[0], chartType: "Line",
+                         xValue: new[] { 0, sicaklikDerece, sicaklikDerece },
+                         yValues: new[] { sicaklikSonuc1[0], sicaklikSonuc1[0], 0 });
+                    }
+                    else
+                    {
+                        chart.AddSeries(name: "2.Sicaklik:" + sicaklikSonuc1[1], chartType: "Line",
+                       xValue: new[] { 0, sicaklikDerece, sicaklikDerece },
+                       yValues: new[] { sicaklikSonuc1[1], sicaklikSonuc1[1], 0 });
+                    }
+                }
+                sayac++;
+            }
+            return View(chart);
+
+            
+        }
+        public ActionResult SeviyeChartOlustur()
+        {
+            Chart chart = new Chart(600, 600, theme: ChartTheme.Vanilla);
+            chart.SetXAxis(min: 0);
+            chart.SetYAxis(min: 0);
+            bool a = true, b = true, c = true, d = true, e = true;
+            chart.AddTitle("Seviye");
+            chart.AddLegend("x ve y degerleri");
+            int[] seviyeSonucDurumu1 = (int[])Session["SeviyeCins"];
+            double[] seviyeSonuc1 = (double[])Session["SeviyeCinsDeger"];
+            double seviyeDerece = (double)Session["seviye"];
+            int sayac = 0;
+            foreach (int seviye in seviyeSonucDurumu1)
+            {
+                //Çok Kücük Ve Asırı çok  Arası grafik secildi
+                if (seviye == 0)
+                {
+
+                    if (a == true)
+                    {
+                        chart.AddSeries(name: "CokDüsük", chartType: "Line",
+                        xValue: new[] { 0, 0.5, 1 },
+                        yValues: new[] { 1, 1, 0 });
+                        a = false;
+                    }
+                    if (sayac == 0)
+                    {
+                        chart.AddSeries(name: "1.Seviye", chartType: "Line",
+                       xValue: new[] { 0, seviyeDerece, seviyeDerece },
+                       yValues: new[] { seviyeSonuc1[0], seviyeSonuc1[0], 0 });
+                    }
+                    else
+                    {
+                        chart.AddSeries(name: "2.Seviye", chartType: "Line",
+                       xValue: new[] { 0, seviyeDerece, seviyeDerece },
+                       yValues: new[] { seviyeSonuc1[1], seviyeSonuc1[1], 0 });
+                    }
+                }
+                if (seviye == 1)
+                {
+                    if (b == true)
+                    {
+                        chart.AddSeries(name: "Düsük", chartType: "Line",
+                        xValue: new[] { 0.5, 1.25, 2 },
+                         yValues: new[] { 0, 1, 0 });
+                        b = false;
+                    }
+                    if (sayac == 0)
+                    {
+                        chart.AddSeries(name: "1.Seviye", chartType: "Line",
+                       xValue: new[] { 0, seviyeDerece, seviyeDerece },
+                       yValues: new[] { seviyeSonuc1[0], seviyeSonuc1[0], 0 });
+                    }
+                    else
+                    {
+                        chart.AddSeries(name: "2.Seviye", chartType: "Line",
+                       xValue: new[] { 0, seviyeDerece, seviyeDerece },
+                       yValues: new[] { seviyeSonuc1[1], seviyeSonuc1[1], 0 });
+                    }
+                }
+                if (seviye == 2)
+                {
+                    if (c == true)
+                    {
+                        chart.AddSeries(name: "Orta", chartType: "Line",
+                        xValue: new[] { 1.5, 2.5, 3.5 },
+                        yValues: new[] { 0, 1, 0 });
+                        c = false;
+                    }
+                    if (sayac == 0)
+                    {
+                        chart.AddSeries(name: "1.Seviye", chartType: "Line",
+                       xValue: new[] { 0, seviyeDerece, seviyeDerece },
+                       yValues: new[] { seviyeSonuc1[0], seviyeSonuc1[0], 0 });
+                    }
+                    else
+                    {
+                        chart.AddSeries(name: "2.Seviye", chartType: "Line",
+                       xValue: new[] { 0, seviyeDerece, seviyeDerece },
+                       yValues: new[] { seviyeSonuc1[1], seviyeSonuc1[1], 0 });
+                    }
+                }
+                if (seviye == 3)
+                {
+                    if (d == true)
+                    {
+                        chart.AddSeries(name: "Çok", chartType: "Line",
+                         xValue: new[] { 3, 3.75, 4.5 },
+                         yValues: new[] { 0, 1, 0 });
+                        d = false;
+                    }
+                    if (sayac == 0)
+                    {
+                        chart.AddSeries(name: "1.Seviye", chartType: "Line",
+                       xValue: new[] { 0, seviyeDerece, seviyeDerece },
+                       yValues: new[] { seviyeSonuc1[0], seviyeSonuc1[0], 0 });
+                    }
+                    else
+                    {
+                        chart.AddSeries(name: "2.Seviye", chartType: "Line",
+                       xValue: new[] { 0, seviyeDerece, seviyeDerece },
+                       yValues: new[] { seviyeSonuc1[1], seviyeSonuc1[1], 0 });
+                    }
+
+                }
+                if (seviye == 4)
+                {
+                    if (e == true)
+                    {
+                        chart.AddSeries(name: "AşırıÇok", chartType: "Line",
+                         xValue: new[] { 4, 4.5, 5 },
+                         yValues: new[] { 0, 1, 1 });
+                        e = false;
+                    }
+                    if (sayac == 0)
+                    {
+                        chart.AddSeries(name: "1.Seviye", chartType: "Line",
+                       xValue: new[] { 0, seviyeDerece, seviyeDerece },
+                       yValues: new[] { seviyeSonuc1[0], seviyeSonuc1[0], 0 });
+                    }
+                    else
+                    {
+                        chart.AddSeries(name: "2.Seviye", chartType: "Line",
+                       xValue: new[] { 0, seviyeDerece, seviyeDerece },
+                       yValues: new[] { seviyeSonuc1[1], seviyeSonuc1[1], 0 });
+                    }
+                }
+                sayac++;
+            }
+            return View(chart);
+
+
+        }
+        public ActionResult sonucChart()
+        {
+            chart.SetXAxis(min: 0);
+            chart.SetYAxis(min: 0);
+            chart.AddTitle("Isı ayarlayıcı 2000");
+            chart.AddLegend("x ve y degerleri");
+            foreach (GrafikModel rezidans in grafikModel)
+            {
+                //Çok Kücük Ve Asırı çok  Arası grafik secildi
+                if (rezidans.rezidansDurumu == "CokDüsük")
+                {
+                    
+                 
+                        chart.AddSeries(name: "CokDüsük-"+rezidans.y1, chartType: "Area",
+                      xValue: new[] { 0, rezidans.x1, 1 },
+                      yValues: new[] { rezidans.y1, rezidans.y1, 0 });
+                       
+                    
+                
+
+                    //chart.AddSeries(chartType: "Line",
+                    // xValue: new[] { rezidans.x1, rezidans.x1 },
+                    // yValues: new[] { 0, rezidans.y1, });
+
+                    //chart.AddSeries(chartType: "Line",
+                    //xValue: new[] { rezidans.x1, 0 },
+                    //yValues: new[] { rezidans.y1, rezidans.y1 });
+
+                }
+                if (rezidans.rezidansDurumu == "Düsük")
+                {
+                   
+                        chart.AddSeries(name: "Düsük-" + rezidans.y1, chartType: "Area",
+                        xValue: new[] { 0.5, rezidans.x2, /*1.25,*/ rezidans.x1, 2 },
+                       yValues: new[] { 0, rezidans.y1,/* 1,*/rezidans.y1, 0 });
+                        
+                    
+
+                    // chart.AddSeries(chartType: "Line",
+                    //xValue: new[] { rezidans.x1, rezidans.x1, },
+                    //yValues: new[] { 0, rezidans.y1, });
+
+                    // chart.AddSeries(chartType: "Line",
+                    // xValue: new[] { rezidans.x1, 0 },
+                    // yValues: new[] { rezidans.y1, rezidans.y1 });
+
+                    // chart.AddSeries(chartType: "Line",
+                    //xValue: new[] { rezidans.x2, rezidans.x2, },
+                    //yValues: new[] { 0, rezidans.y1, });
+
+                    // chart.AddSeries(chartType: "Line",
+                    // xValue: new[] { rezidans.x2, 0 },
+                    // yValues: new[] { rezidans.y1, rezidans.y1 });
+                }
+                if (rezidans.rezidansDurumu == "Orta")
+                {
+                   
+                        chart.AddSeries(name:"orta-"+rezidans.y1, chartType: "Area",
+                        xValue: new[] { 1.5, rezidans.x2, /*2.5,*/ rezidans.x1, 3.5 },
+                        yValues: new[] { 0, rezidans.y1, /*1,*/ rezidans.y1, 0 });
+                        
+                    
+
+
+                    // chart.AddSeries(chartType: "Line",
+                    // xValue: new[] { rezidans.x1, rezidans.x1 },
+                    // yValues: new[] { 0, rezidans.y1, });
+
+                    // chart.AddSeries(chartType: "Line",
+                    // xValue: new[] { rezidans.x1, 0 },
+                    // yValues: new[] { rezidans.y1, rezidans.y1 });
+
+                    // chart.AddSeries(chartType: "Line",
+                    //xValue: new[] { rezidans.x2, rezidans.x2, },
+                    //yValues: new[] { 0, rezidans.y1, });
+
+                    // chart.AddSeries(chartType: "Line",
+                    // xValue: new[] { rezidans.x2, 0 },
+                    // yValues: new[] { rezidans.y1, rezidans.y1 });
+
+
+
+
+                }
+                if (rezidans.rezidansDurumu == "Çok")
+                {
+                   
+                        chart.AddSeries(name:"Çok-" + rezidans.y1, chartType: "Area",
+                         xValue: new[] { 3, rezidans.x2, /*3.75,*/ rezidans.x1, 4.5 },
+                         yValues: new[] { 0, rezidans.y1, /*1,*/ rezidans.y1, 0 });
+
+                    
+
+                    //                 chart.AddSeries(chartType: "Line",
+                    //xValue: new[] { rezidans.x1, rezidans.x1, },
+                    //yValues: new[] { 0, rezidans.y1, });
+
+                    //                 chart.AddSeries(chartType: "Line",
+                    //                 xValue: new[] { rezidans.x1, 0 },
+                    //                 yValues: new[] { rezidans.y1, rezidans.y1 });
+
+                    //                 chart.AddSeries(chartType: "Line",
+                    //                xValue: new[] { rezidans.x2, rezidans.x2, },
+                    //                yValues: new[] { 0, rezidans.y1, });
+
+                    //                 chart.AddSeries(chartType: "Line",
+                    //                 xValue: new[] { rezidans.x2, 0 },
+                    //                 yValues: new[] { rezidans.y1, rezidans.y1 });
+                }
+                if (rezidans.rezidansDurumu == "AşırıÇok")
+                {
+                    
+
+                        chart.AddSeries(name: "AşırıÇok-" + rezidans.y1, chartType: "Area",
+                         xValue: new[] { 4, rezidans.x1, 5 },
+                         yValues: new[] { 0, rezidans.y1, rezidans.y1 });
+                       
+                    
 
                     //chart.AddSeries( chartType: "Line",
                     //xValue: new[] { 0, rezidans.x1, rezidans.x1 },
                     //yValues: new[] { rezidans.y1, rezidans.y1, 0 });
 
-                    chart.AddSeries(chartType: "Line",
-                     xValue: new[] { rezidans.x1, rezidans.x1 },
-                     yValues: new[] { 0, rezidans.y1, });
+                    //    chart.AddSeries(chartType: "Line",
+                    //     xValue: new[] { rezidans.x1, rezidans.x1 },
+                    //     yValues: new[] { 0, rezidans.y1, });
 
-                    chart.AddSeries(chartType: "Line",
-                    xValue: new[] { rezidans.x1, 0 },
-                    yValues: new[] { rezidans.y1, rezidans.y1 });
+                    //    chart.AddSeries(chartType: "Line",
+                    //    xValue: new[] { rezidans.x1, 0 },
+                    //    yValues: new[] { rezidans.y1, rezidans.y1 });
                 }
+              
             }
+            
             return View(chart);
         }
-
         public ActionResult Index()
         {
 
@@ -232,7 +655,8 @@ namespace BulanikMantik.Controllers
                 grafikModel.Count();
                 grafikModel.RemoveRange(0, grafikModel.Count());
             }
-            
+            Session["sicaklik"] = Sicaklik;
+            Session["seviye"] = seviye;
             //1 adım
             ViewBag.sicaklikSonuc = sicaklikSonuc;
             ViewBag.sicaklikSonucDurumu = sicaklikSonucDurumu;
@@ -271,6 +695,9 @@ namespace BulanikMantik.Controllers
                 }
                 sicaklikSonucDurumu[sayac] = 0;
                 sayac++;
+                SicaklıkSeviyeModel s = new SicaklıkSeviyeModel();
+               
+            
             }
             if (Sicaklik >= 15 && Sicaklik < 40)
             {
@@ -329,6 +756,8 @@ namespace BulanikMantik.Controllers
                 sicaklikSonucDurumu[sayac] = 4;
                 sayac++;
             }
+            Session["SicaklıkCins"] = sicaklikSonucDurumu;
+            Session["sicaklikCinsDeger"] = sicaklikSonuc;
             //seviye kontrol
             sayac = 0;
             if (seviye >= 0 && seviye < 1)
@@ -401,7 +830,10 @@ namespace BulanikMantik.Controllers
                 seviyeSonucDurumu[sayac] = 4;
                 sayac++;
             }
+            Session["SeviyeCins"] = seviyeSonucDurumu;
+            Session["SeviyeCinsDeger"] = seviyeSonuc;
         }
+
         //Bulanik Cikarim
         public void bulanikCikarim()
         {
