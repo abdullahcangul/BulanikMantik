@@ -1,3 +1,3 @@
 # BulanikMantik
 
-Bu uygulamada oop ve diseng patternlerin önemini anlatım
+Bu uygulamada oop ve disegn patternlerin önemini anlatım
